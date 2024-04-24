@@ -1,15 +1,15 @@
 <template>
   <div class="generate__page-wrapper">
     <div class="generate__avatar">
-      <img src="../assets/images/background/Boom.png">
-      <img src="../assets/images/body/Muscle_shirt.png" class="avatar__body">
-      <img src="../assets/images/pet/Cat.png" class="avatar__pet">
+      <img :src="store.state.background[0]">
+      <img :src="store.state.body[0]" class="avatar__body">
+      <img :src="store.state.pet[0]" class="avatar__pet">
       <img src="../assets/images/head/head.png" class="avatar__head">
-      <img src="../assets/images/mouth/OpenSmile.png" class="avatar__mouth">
-      <img src="../assets/images/eyes/Normal.png" class="avatar__eyes">
-      <img src="../assets/images/glasses/Sunnies.png" class="avatar__glasses">
-      <img src="../assets/images/eyebrows/Formed.png" class="avatar__eyebrows">
-      <img src="../assets/images/top/Ninja.png" class="avatar__top">
+      <img :src="store.state.mouth[0]" class="avatar__mouth">
+      <img :src="store.state.eyes[0]" class="avatar__eyes">
+      <img :src="store.state.glasses[0]" class="avatar__glasses">
+      <img :src="store.state.eyebrows[0]" class="avatar__eyebrows">
+      <img :src="store.state.top[0]" class="avatar__top">
       <div class="avatar__buttons">
         <button class="buttons__btn update">
           Обновить
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-
+import store from '../store/index';
 </script>
 
 <style lang="scss" scoped>
