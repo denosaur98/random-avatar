@@ -1,17 +1,17 @@
 <template>
   <div class="generate__page-wrapper">
     <div class="generate__avatar">
-      <img :src="store.state.background[0]">
-      <img :src="store.state.body[0]" class="avatar__body">
-      <img :src="store.state.pet[0]" class="avatar__pet">
+      <img :src="currentBackground">
+      <img :src="currentBody" class="avatar__body">
+      <img :src="currentPet" class="avatar__pet">
       <img src="../assets/images/head/head.png" class="avatar__head">
-      <img :src="store.state.mouth[0]" class="avatar__mouth">
-      <img :src="store.state.eyes[0]" class="avatar__eyes">
-      <img :src="store.state.glasses[0]" class="avatar__glasses">
-      <img :src="store.state.eyebrows[0]" class="avatar__eyebrows">
-      <img :src="store.state.top[0]" class="avatar__top">
+      <img :src="currentMouth" class="avatar__mouth">
+      <img :src="currentEyes" class="avatar__eyes">
+      <img :src="currentGlasses" class="avatar__glasses">
+      <img :src="currentEyebrows" class="avatar__eyebrows">
+      <img :src="currentTop" class="avatar__top">
       <div class="avatar__buttons">
-        <button class="buttons__btn update">
+        <button class="buttons__btn update" @click="createAvatar">
           Обновить
           <img src="../assets/icons/update.svg">
         </button>
@@ -26,7 +26,29 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import store from '../store/index';
+
+const currentBackground = ref(store.state.background[0])
+const currentBody = ref(store.state.body[0])
+const currentPet = ref(store.state.pet[0])
+const currentMouth = ref(store.state.mouth[0])
+const currentEyes = ref(store.state.eyes[0])
+const currentGlasses = ref(store.state.glasses[0])
+const currentEyebrows = ref(store.state.eyebrows[0])
+const currentTop = ref(store.state.top[0])
+
+function createAvatar() {
+  const randomIndex = arr => Math.floor(Math.random() * arr.length)
+  currentBackground.value = store.state.background[randomIndex(store.state.background)]
+  currentBody.value = store.state.body[randomIndex(store.state.body)]
+  currentPet.value = store.state.pet[randomIndex(store.state.pet)]
+  currentMouth.value = store.state.mouth[randomIndex(store.state.mouth)]
+  currentEyes.value = store.state.eyes[randomIndex(store.state.eyes)]
+  currentGlasses.value = store.state.glasses[randomIndex(store.state.glasses)]
+  currentEyebrows.value = store.state.eyebrows[randomIndex(store.state.eyebrows)]
+  currentTop.value = store.state.top[randomIndex(store.state.top)]
+}
 </script>
 
 <style lang="scss" scoped>
@@ -67,7 +89,7 @@ import store from '../store/index';
     .avatar__pet {
       position: absolute;
       bottom: -60px;
-      z-index: 2;
+      z-index: 4;
       left: -70px;
       transform: rotate(-20deg);
     }

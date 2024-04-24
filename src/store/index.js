@@ -50,13 +50,14 @@ export default createStore({
 	state() {
 		return {
 			background: [boom, bricks, solid],
-			body: [muscle, necklace, plain, print, hero, sweater],
-			eyebrows: [angry, formed, round, thick, thin, unsure],
-			eyes: [lashes, nice, normal, original, tired],
-			glasses: [plainGlass, reading, sunnies],
-			mouth: [beard, beardTwo, line, lips, openSmile, originalMouth, smile],
-			pet: [cat, dog, fish, raptor],
+			body: [hero, muscle, necklace, plain, print, sweater],
+			eyebrows: [formed, angry, round, thick, thin, unsure],
+			eyes: [normal, lashes, nice, original, tired],
+			glasses: [sunnies, plainGlass, reading],
+			mouth: [openSmile, beard, beardTwo, line, lips, originalMouth, smile],
+			pet: [raptor, cat, dog, fish],
 			top: [
+				ninja,
 				bun,
 				cap,
 				crazy,
@@ -64,7 +65,6 @@ export default createStore({
 				long,
 				mohawk,
 				mullet,
-				ninja,
 				ponytail,
 				smooth,
 				styled,
@@ -105,5 +105,5 @@ export default createStore({
 			],
 		}
 	},
-	mutations: {},
+	actions: {},
 })
