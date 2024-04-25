@@ -2,6 +2,15 @@
   <div class="avatar__favorites">
     <div class="favorites__place">
       <div class="place__item" v-for="item in store.state.favorites" :key="item.id">
+        <img :src="item.background" class="avatar__background">
+        <img :src="item.body" class="avatar__body">
+        <img :src="item.pet" class="avatar__pet">
+        <img src="../assets/images/head/head.png" class="avatar__head">
+        <img :src="item.mouth" class="avatar__mouth">
+        <img :src="item.eyes" class="avatar__eyes">
+        <img :src="item.glasses" class="avatar__glasses">
+        <img :src="item.eyebrows" class="avatar__eyebrows">
+        <img :src="item.top" class="avatar__top">
         <button class="item__btn">
           Удалить
           <img src="../assets/icons/trash.svg">
@@ -40,8 +49,77 @@ import store from '../store/index';
       height: 220px;
       border: 2px solid #fbff00;
       border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+
+      .avatar__background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      .avatar__body {
+        position: absolute;
+        bottom: -30px;
+        z-index: 1;
+        width: 155px;
+        height: 116px;
+      }
+
+      .avatar__pet {
+        position: absolute;
+        bottom: -80px;
+        z-index: 4;
+        left: -110px;
+        transform: rotate(-20deg) scale(0.5);
+      }
+
+      .avatar__head {
+        position: absolute;
+        top: 47px;
+        z-index: 0;
+        width: 83px;
+        height: 95px;
+      }
+    
+      .avatar__mouth {
+        position: absolute;
+        top: 90px;
+        z-index: 1;
+        transform: scale(0.5);
+      }
+
+      .avatar__eyes {
+        position: absolute;
+        top: 75px;
+        z-index: 1;
+        transform: scale(0.5);
+      }
+
+      .avatar__glasses {
+        position: absolute;
+        top: 68px;
+        z-index: 2;
+        transform: scale(0.5);
+      }
+
+      .avatar__eyebrows {
+        position: absolute;
+        top: 65px;
+        z-index: 3;
+        transform: scale(0.5);
+      }
+
+      .avatar__top {
+        position: absolute;
+        top: -45px;
+        z-index: 3;
+        transform: scale(0.5);
+      }
       
       .item__btn {
+        position: absolute;
         cursor: pointer;
         border-radius: 4px;
         display: flex;
@@ -52,9 +130,9 @@ import store from '../store/index';
         font-size: 16px;
         gap: 5px;
         background: #000;
-        margin-top: auto;
         border: 1px solid #fff;
-        margin-bottom: 20px;
+        bottom: 10px;
+        z-index: 999;
 
         img {
           width: 20px;

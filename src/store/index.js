@@ -69,41 +69,17 @@ export default createStore({
 				smooth,
 				styled,
 			],
-			favorites: [
-				{
-					id: 1,
-					name: 'one',
-				},
-				{
-					id: 2,
-					name: 'two',
-				},
-				{
-					id: 3,
-					name: 'three',
-				},
-				{
-					id: 4,
-					name: 'four',
-				},
-				{
-					id: 5,
-					name: 'five',
-				},
-				{
-					id: 6,
-					name: 'six',
-				},
-				{
-					id: 7,
-					name: 'seven',
-				},
-				{
-					id: 8,
-					name: 'eight',
-				},
-			],
+			favorites: [],
 		}
 	},
-	actions: {},
+	actions: {
+		saveAvatar({ commit }, avatar) {
+			commit('SAVE_AVATAR', avatar)
+		},
+	},
+	mutations: {
+		SAVE_AVATAR(state, avatar) {
+			state.favorites.push(avatar)
+		},
+	},
 })

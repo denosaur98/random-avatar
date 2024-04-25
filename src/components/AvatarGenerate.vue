@@ -15,7 +15,7 @@
           Обновить
           <img src="../assets/icons/update.svg">
         </button>
-        <button class="buttons__btn favorite">
+        <button class="buttons__btn favorite" @click="saveAvatar">
           В избранное
           <img src="../assets/icons/like.svg">
         </button>
@@ -48,6 +48,21 @@ function createAvatar() {
   currentGlasses.value = store.state.glasses[randomIndex(store.state.glasses)]
   currentEyebrows.value = store.state.eyebrows[randomIndex(store.state.eyebrows)]
   currentTop.value = store.state.top[randomIndex(store.state.top)]
+}
+
+function saveAvatar() {
+  const avatar = {
+    id: store.state.favorites.length + 1,
+    background: currentBackground.value,
+    body: currentBody.value,
+    pet: currentPet.value,
+    mouth: currentMouth.value,
+    eyes: currentEyes.value,
+    glasses: currentGlasses.value,
+    eyebrows: currentEyebrows.value,
+    top: currentTop.value
+  }
+  store.dispatch('saveAvatar', avatar)
 }
 </script>
 
