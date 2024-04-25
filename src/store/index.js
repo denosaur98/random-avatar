@@ -81,5 +81,8 @@ export default createStore({
 		SAVE_AVATAR(state, avatar) {
 			state.favorites.push(avatar)
 		},
+		REMOVE_FROM_FAVORITES(state, avatarId) {
+			state.favorites = state.favorites.filter(avatar => avatar.id !== avatarId)
+		},
 	},
 })

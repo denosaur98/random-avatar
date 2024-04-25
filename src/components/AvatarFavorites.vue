@@ -11,7 +11,7 @@
         <img :src="item.glasses" class="avatar__glasses">
         <img :src="item.eyebrows" class="avatar__eyebrows">
         <img :src="item.top" class="avatar__top">
-        <button class="item__btn">
+        <button class="item__btn" @click="removeFromFavorites(item.id)">
           Удалить
           <img src="../assets/icons/trash.svg">
         </button>
@@ -23,6 +23,10 @@
 
 <script setup>
 import store from '../store/index';
+
+function removeFromFavorites(avatar) {
+  store.commit('REMOVE_FROM_FAVORITES', avatar)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -32,14 +36,13 @@ import store from '../store/index';
   align-items: center;
   justify-content: center;
   background: #000;
-  gap: 30px;
+  gap: 10px;
   width: 100%;
   height: 100%;
 
   .favorites__place {
     display: grid;
     grid-template-columns: repeat(4, auto);
-    gap: 40px;
 
     .place__item {
       display: flex;
@@ -51,6 +54,7 @@ import store from '../store/index';
       border-radius: 6px;
       position: relative;
       overflow: hidden;
+      margin: 20px;
 
       .avatar__background {
         position: absolute;
@@ -99,7 +103,7 @@ import store from '../store/index';
 
       .avatar__glasses {
         position: absolute;
-        top: 68px;
+        top: 70px;
         z-index: 2;
         transform: scale(0.5);
       }
