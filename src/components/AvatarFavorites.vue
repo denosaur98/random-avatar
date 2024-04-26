@@ -178,9 +178,18 @@ function removeFromFavorites(avatar) {
     color: #fff;
     font-size: 20px;
 
-    &:hover {
-      transition: .3s;
-      color: #9c9c9c;
+    @media (hover:hover) {
+      &:hover {
+        transition: .3s;
+        color: #9c9c9c;
+      }
+    }
+
+    @media (hover:none) {
+      &:active {
+        transition: .3s;
+        color: #9c9c9c;
+      }
     }
   }
 }
