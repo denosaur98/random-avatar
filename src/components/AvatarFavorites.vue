@@ -44,6 +44,19 @@ function removeFromFavorites(avatar) {
     display: grid;
     grid-template-columns: repeat(4, auto);
 
+    @media (max-width: 1050px) {
+      grid-template-columns: repeat(3, auto);
+    }
+
+    @media (max-width: 800px) {
+      grid-template-columns: repeat(2, auto);
+    }
+
+    @media (max-width: 550px) {
+      display: flex;
+      flex-direction: column;
+    }
+
     .place__item {
       display: flex;
       flex-direction: column;

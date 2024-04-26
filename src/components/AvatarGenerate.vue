@@ -15,7 +15,7 @@
           Обновить
           <img src="../assets/icons/update.svg">
         </button>
-        <button class="buttons__btn favorite" @click="saveAvatar">
+        <button class="buttons__btn favorite" :style="{ opacity: isFavorite ? 0.5 : 1 }" :disabled="isFavorite" @click="saveAvatar">
           В избранное
           <img src="../assets/icons/like.svg">
         </button>
@@ -29,6 +29,7 @@
 import { ref } from 'vue';
 import store from '../store/index';
 
+const isFavorite = ref(false)
 const currentBackground = ref(store.state.background[0])
 const currentBody = ref(store.state.body[0])
 const currentPet = ref(store.state.pet[0])
@@ -48,6 +49,7 @@ function createAvatar() {
   currentGlasses.value = store.state.glasses[randomIndex(store.state.glasses)]
   currentEyebrows.value = store.state.eyebrows[randomIndex(store.state.eyebrows)]
   currentTop.value = store.state.top[randomIndex(store.state.top)]
+  isFavorite.value = false
 }
 
 function saveAvatar() {
@@ -63,6 +65,7 @@ function saveAvatar() {
     top: currentTop.value
   }
   store.dispatch('saveAvatar', avatar)
+  isFavorite.value = true
 }
 </script>
 
@@ -87,6 +90,10 @@ function saveAvatar() {
     border-radius: 6px;
     position: relative;
     overflow: hidden;
+
+    @media (max-width: 500px) {
+      transform: scale(0.7);
+    }
 
     .avatar__background {
       position: absolute;
