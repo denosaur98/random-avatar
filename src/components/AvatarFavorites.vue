@@ -156,9 +156,18 @@ function removeFromFavorites(avatar) {
           height: 20px;
         }
 
-        &:hover {
-          opacity: 0.7;
-          transition: .3s;
+        @media (hover:hover) {
+          &:hover {
+            box-shadow: 1px 1px 10px 1px #fff;
+            transition: .3s;
+          }
+        }
+
+        @media (hover:none) {
+          &:active {
+            box-shadow: 1px 1px 10px 1px #fff;
+            transition: .3s;
+          }
         }
       }
     }

@@ -172,9 +172,21 @@ function saveAvatar() {
         font-size: 16px;
         gap: 5px;
 
-        &:hover {
-          opacity: 0.7;
-          transition: .3s;
+        @media (hover:hover) {
+          &:hover {
+            box-shadow: 1px 1px 10px 1px #fff;
+            transition: .3s;
+          }
+          &:disabled:hover {
+            box-shadow: 0px 0px 0px 0px;
+          }
+        }
+
+        @media (hover:none) {
+          &:active {
+            box-shadow: 1px 1px 10px 1px #fff;
+            transition: .3s;
+          }
         }
       }
 
@@ -188,9 +200,18 @@ function saveAvatar() {
     color: #fff;
     font-size: 20px;
 
-    &:hover {
-      transition: .3s;
-      color: #9c9c9c;
+    @media (hover:hover) {
+      &:hover {
+        transition: .3s;
+        color: #9c9c9c;
+      }
+    }
+
+    @media (hover:none) {
+      &:active {
+        transition: .3s;
+        color: #9c9c9c;
+      }
     }
   }
 }
