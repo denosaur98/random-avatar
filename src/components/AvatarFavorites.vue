@@ -39,6 +39,8 @@ function removeFromFavorites(avatar) {
   gap: 10px;
   width: 100%;
   height: 100%;
+  padding: 50px;
+  min-height: 100vh;
 
   .favorites__place {
     display: grid;

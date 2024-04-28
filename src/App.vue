@@ -20,8 +20,4 @@
   box-sizing: border-box;
   font-family: 'ALSHauss';
 }
-
-.app {
-  height: 100vh;
-}
 </style>

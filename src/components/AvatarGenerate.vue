@@ -79,6 +79,7 @@ function saveAvatar() {
   height: 100%;
   background: #000;
   gap: 30px;
+  min-height: 100vh;
 
   .generate__avatar {
     display: flex;
