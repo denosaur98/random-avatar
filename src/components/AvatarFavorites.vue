@@ -5,7 +5,7 @@
         <img :src="item.background" class="avatar__background">
         <img :src="item.body" class="avatar__body">
         <img :src="item.pet" class="avatar__pet">
-        <img src="../assets/images/head/head.png" class="avatar__head">
+        <img src="../assets/images/head/Head.svg" class="avatar__head">
         <img :src="item.mouth" class="avatar__mouth" :style="item.mouth.includes('Beard2') ? {top: '50px'} : ''">
         <img :src="item.eyes" class="avatar__eyes">
         <img :src="item.glasses" class="avatar__glasses">

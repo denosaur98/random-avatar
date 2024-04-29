@@ -10,7 +10,7 @@
         <img :src="currentBackground">
         <img :src="currentBody" class="avatar__body">
         <img :src="currentPet" class="avatar__pet">
-        <img src="../assets/images/head/head.png" class="avatar__head">
+        <img src="../assets/images/head/Head.svg" class="avatar__head">
         <img :src="currentMouth" class="avatar__mouth" :style="typeof currentMouth === 'string' && currentMouth.includes('Beard2') ? {top: '170px'} : ''">
         <img :src="currentEyes" class="avatar__eyes">
         <img :src="currentGlasses" class="avatar__glasses">
