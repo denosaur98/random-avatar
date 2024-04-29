@@ -6,11 +6,11 @@
         <img :src="item.body" class="avatar__body">
         <img :src="item.pet" class="avatar__pet">
         <img src="../assets/images/head/head.png" class="avatar__head">
-        <img :src="item.mouth" class="avatar__mouth">
+        <img :src="item.mouth" class="avatar__mouth" :style="item.mouth.includes('Beard2') ? {top: '50px'} : ''">
         <img :src="item.eyes" class="avatar__eyes">
         <img :src="item.glasses" class="avatar__glasses">
         <img :src="item.eyebrows" class="avatar__eyebrows">
-        <img :src="item.top" class="avatar__top">
+        <img :src="item.top" class="avatar__top" :style="item.top.includes('Long') ? {top: '-70px'} : ''">
         <button class="item__btn" @click="removeFromFavorites(item.id)">
           Удалить
           <img src="../assets/icons/trash.svg">
