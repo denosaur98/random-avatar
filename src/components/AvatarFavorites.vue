@@ -24,8 +24,8 @@
 <script setup>
 import store from '../store/index';
 
-function removeFromFavorites(avatar) {
-  store.commit('REMOVE_FROM_FAVORITES', avatar)
+function removeFromFavorites(avatarId) {
+  store.dispatch('removeFromFavorites', avatarId)
 }
 </script>
 

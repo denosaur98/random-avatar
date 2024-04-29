@@ -83,6 +83,9 @@ export default createStore({
 		saveAvatar({ commit }, avatar) {
 			commit('SAVE_AVATAR', avatar)
 		},
+		removeFromFavorites({ commit }, avatarId) {
+			commit('REMOVE_FROM_FAVORITES', avatarId)
+		},
 	},
 	mutations: {
 		SET_CURRENT_BACKGROUND(state, background) {
@@ -110,10 +113,13 @@ export default createStore({
 			state.currentTop = top
 		},
 		SAVE_AVATAR(state, avatar) {
-			state.favorites.unshift(avatar)
+			state.favorites.push(avatar)
 		},
 		REMOVE_FROM_FAVORITES(state, avatarId) {
-			state.favorites = state.favorites.filter(avatar => avatar.id !== avatarId)
+			const index = state.favorites.findIndex(avatar => avatar.id === avatarId)
+			if (index !== -1) {
+				state.favorites.splice(index, 1)
+			}
 		},
 	},
 })
