@@ -1,15 +1,22 @@
 <template>
   <div class="generate__page-wrapper">
     <div class="generate__avatar">
-      <img :src="currentBackground">
-      <img :src="currentBody" class="avatar__body">
-      <img :src="currentPet" class="avatar__pet">
-      <img src="../assets/images/head/head.png" class="avatar__head">
-      <img :src="currentMouth" class="avatar__mouth" :style="currentMouth.includes('Beard2') ? {top: '170px'} : ''">
-      <img :src="currentEyes" class="avatar__eyes">
-      <img :src="currentGlasses" class="avatar__glasses">
-      <img :src="currentEyebrows" class="avatar__eyebrows">
-      <img :src="currentTop" class="avatar__top">
+      <div class="avatar__download">
+        <button class="download__btn" @click="downloadAvatar">
+          <img src="../assets/icons/download.svg">
+        </button>
+      </div>
+      <div class="avatar__elements-container">
+        <img :src="currentBackground">
+        <img :src="currentBody" class="avatar__body">
+        <img :src="currentPet" class="avatar__pet">
+        <img src="../assets/images/head/head.png" class="avatar__head">
+        <img :src="currentMouth" class="avatar__mouth" :style="typeof currentMouth === 'string' && currentMouth.includes('Beard2') ? {top: '170px'} : ''">
+        <img :src="currentEyes" class="avatar__eyes">
+        <img :src="currentGlasses" class="avatar__glasses">
+        <img :src="currentEyebrows" class="avatar__eyebrows">
+        <img :src="currentTop" class="avatar__top">
+      </div>
       <div class="avatar__buttons">
         <button class="buttons__btn update" @click="createAvatar">
           Обновить
@@ -28,6 +35,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import store from '../store/index';
+import html2canvas from 'html2canvas';
 
 const isFavorite = ref(false)
 const currentBackground = computed(() => store.state.currentBackground)
@@ -62,6 +70,16 @@ function saveAvatar() {
   store.dispatch('saveAvatar', avatar)
   isFavorite.value = true
 }
+
+async function downloadAvatar() {
+  const avatarElement = document.querySelector('.avatar__elements-container')
+  const canvas = await html2canvas(avatarElement)
+  const dataURL = canvas.toDataURL('image/png')
+  const link = document.createElement('a')
+  link.download = 'avatar.png'  
+  link.href = dataURL
+  link.click()
+}
 </script>
 
 <style lang="scss" scoped>
@@ -91,61 +109,100 @@ function saveAvatar() {
       transform: scale(0.7);
     }
 
-    .avatar__background {
+    .avatar__download {
       position: absolute;
       width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 5px;
+      z-index: 999;
+
+      .download__btn {
+        cursor: pointer;
+        background: none;
+        border: none;
+
+        @media (hover:hover) {
+          &:hover {
+            opacity: 0.5;
+            transition: .3s;
+          }
+        }
+
+        @media (hover:none) {
+          &:active {
+            opacity: 0.5;
+            transition: .3s;
+          }
+        }
+      }
+    }
+
+    .avatar__elements-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
       height: 100%;
-      z-index: 0;
-    }
+      position: relative;
+      overflow: hidden;
 
-    .avatar__body {
-      position: absolute;
-      bottom: -60px;
-      z-index: 1;
-    }
+      .avatar__background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
 
-    .avatar__pet {
-      position: absolute;
-      bottom: -60px;
-      z-index: 4;
-      left: -70px;
-      transform: rotate(-20deg);
-    }
+      .avatar__body {
+        position: absolute;
+        bottom: -60px;
+        z-index: 1;
+      }
 
-    .avatar__head {
-      position: absolute;
-      top: 110px;
-      z-index: 0;
-    }
-  
-    .avatar__mouth {
-      position: absolute;
-      top: 210px;
-      z-index: 1;
-    }
+      .avatar__pet {
+        position: absolute;
+        bottom: -60px;
+        z-index: 4;
+        left: -70px;
+        transform: rotate(-20deg);
+      }
 
-    .avatar__eyes {
-      position: absolute;
-      top: 180px;
-      z-index: 1;
-    }
+      .avatar__head {
+        position: absolute;
+        top: 110px;
+        z-index: 0;
+      }
+    
+      .avatar__mouth {
+        position: absolute;
+        top: 210px;
+        z-index: 1;
+      }
 
-    .avatar__glasses {
-      position: absolute;
-      top: 170px;
-      z-index: 2;
-    }
+      .avatar__eyes {
+        position: absolute;
+        top: 180px;
+        z-index: 1;
+      }
 
-    .avatar__eyebrows {
-      position: absolute;
-      top: 156px;
-      z-index: 3;
-    }
+      .avatar__glasses {
+        position: absolute;
+        top: 170px;
+        z-index: 2;
+      }
 
-    .avatar__top {
-      position: absolute;
-      top: 40px;
-      z-index: 3;
+      .avatar__eyebrows {
+        position: absolute;
+        top: 156px;
+        z-index: 3;
+      }
+
+      .avatar__top {
+        position: absolute;
+        top: 40px;
+        z-index: 3;
+      }
     }
     
     .avatar__buttons {
