@@ -56,30 +56,61 @@ export default createStore({
 			glasses: [sunnies, plainGlass, reading],
 			mouth: [openSmile, beard, beardTwo, line, lips, originalMouth, smile],
 			pet: [raptor, cat, dog, fish],
-			top: [
-				ninja,
-				bun,
-				cap,
-				crazy,
-				curly,
-				long,
-				mohawk,
-				mullet,
-				ponytail,
-				smooth,
-				styled,
-			],
+			top: [ninja, bun, cap, crazy, curly, long, mohawk, mullet, ponytail, smooth, styled],
 			favorites: [],
+			currentBackground: null,
+			currentBody: null,
+			currentPet: null,
+			currentMouth: null,
+			currentEyes: null,
+			currentGlasses: null,
+			currentEyebrows: null,
+			currentTop: null,
 		}
 	},
 	actions: {
+		createAvatar({ commit }) {
+			const randomIndex = arr => Math.floor(Math.random() * arr.length)
+			commit('SET_CURRENT_BACKGROUND', this.state.background[randomIndex(this.state.background)])
+			commit('SET_CURRENT_BODY', this.state.body[randomIndex(this.state.body)])
+			commit('SET_CURRENT_PET', this.state.pet[randomIndex(this.state.pet)])
+			commit('SET_CURRENT_MOUTH', this.state.mouth[randomIndex(this.state.mouth)])
+			commit('SET_CURRENT_EYES', this.state.eyes[randomIndex(this.state.eyes)])
+			commit('SET_CURRENT_GLASSES', this.state.glasses[randomIndex(this.state.glasses)])
+			commit('SET_CURRENT_EYEBROWS', this.state.eyebrows[randomIndex(this.state.eyebrows)])
+			commit('SET_CURRENT_TOP', this.state.top[randomIndex(this.state.top)])
+		},
 		saveAvatar({ commit }, avatar) {
 			commit('SAVE_AVATAR', avatar)
 		},
 	},
 	mutations: {
+		SET_CURRENT_BACKGROUND(state, background) {
+			state.currentBackground = background
+		},
+		SET_CURRENT_BODY(state, body) {
+			state.currentBody = body
+		},
+		SET_CURRENT_PET(state, pet) {
+			state.currentPet = pet
+		},
+		SET_CURRENT_MOUTH(state, mouth) {
+			state.currentMouth = mouth
+		},
+		SET_CURRENT_EYES(state, eyes) {
+			state.currentEyes = eyes
+		},
+		SET_CURRENT_GLASSES(state, glasses) {
+			state.currentGlasses = glasses
+		},
+		SET_CURRENT_EYEBROWS(state, eyebrows) {
+			state.currentEyebrows = eyebrows
+		},
+		SET_CURRENT_TOP(state, top) {
+			state.currentTop = top
+		},
 		SAVE_AVATAR(state, avatar) {
-			state.favorites.push(avatar)
+			state.favorites.unshift(avatar)
 		},
 		REMOVE_FROM_FAVORITES(state, avatarId) {
 			state.favorites = state.favorites.filter(avatar => avatar.id !== avatarId)

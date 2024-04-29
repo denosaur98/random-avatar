@@ -26,31 +26,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import store from '../store/index';
 
 const isFavorite = ref(false)
-const currentBackground = ref(store.state.background[0])
-const currentBody = ref(store.state.body[0])
-const currentPet = ref(store.state.pet[0])
-const currentMouth = ref(store.state.mouth[0])
-const currentEyes = ref(store.state.eyes[0])
-const currentGlasses = ref(store.state.glasses[0])
-const currentEyebrows = ref(store.state.eyebrows[0])
-const currentTop = ref(store.state.top[0])
+const currentBackground = computed(() => store.state.currentBackground)
+const currentBody = computed(() => store.state.currentBody)
+const currentPet = computed(() => store.state.currentPet)
+const currentMouth = computed(() => store.state.currentMouth)
+const currentEyes = computed(() => store.state.currentEyes)
+const currentGlasses = computed(() => store.state.currentGlasses)
+const currentEyebrows = computed(() => store.state.currentEyebrows)
+const currentTop = computed(() => store.state.currentTop)
 
 function createAvatar() {
-  const randomIndex = arr => Math.floor(Math.random() * arr.length)
-  currentBackground.value = store.state.background[randomIndex(store.state.background)]
-  currentBody.value = store.state.body[randomIndex(store.state.body)]
-  currentPet.value = store.state.pet[randomIndex(store.state.pet)]
-  currentMouth.value = store.state.mouth[randomIndex(store.state.mouth)]
-  currentEyes.value = store.state.eyes[randomIndex(store.state.eyes)]
-  currentGlasses.value = store.state.glasses[randomIndex(store.state.glasses)]
-  currentEyebrows.value = store.state.eyebrows[randomIndex(store.state.eyebrows)]
-  currentTop.value = store.state.top[randomIndex(store.state.top)]
+  store.dispatch('createAvatar')
   isFavorite.value = false
 }
+onMounted(() => {
+  store.dispatch('createAvatar')
+})
 
 function saveAvatar() {
   const avatar = {
