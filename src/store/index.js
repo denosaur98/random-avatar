@@ -68,6 +68,19 @@ export default createStore({
 			currentTop: null,
 		}
 	},
+	plugins: [
+		store => {
+			store.subscribe((mutation, state) => {
+				if (mutation.type === 'SAVE_AVATAR' || mutation.type === 'REMOVE_FROM_FAVORITES') {
+					localStorage.setItem('favorites', JSON.stringify(state.favorites))
+				}
+			})
+			const savedFavorites = localStorage.getItem('favorites')
+			if (savedFavorites) {
+				store.commit('SET_FAVORITES', JSON.parse(savedFavorites))
+			}
+		},
+	],
 	actions: {
 		createAvatar({ commit }) {
 			const randomIndex = arr => Math.floor(Math.random() * arr.length)
@@ -88,6 +101,9 @@ export default createStore({
 		},
 	},
 	mutations: {
+		SET_FAVORITES(state, favorites) {
+			state.favorites = favorites
+		},
 		SET_CURRENT_BACKGROUND(state, background) {
 			state.currentBackground = background
 		},
